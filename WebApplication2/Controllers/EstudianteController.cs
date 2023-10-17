@@ -2,63 +2,57 @@ using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Context;
 using WebApplication2.Models;
 
-
 namespace WebApplication2.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class EstudiantesController : ControllerBase
+    public class EstudianteController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
-        private readonly ILogger<EstudiantesController> _logger;                         
+        private readonly ILogger<EstudianteController> _logger;
         private readonly AplicacionContexto _aplicacionContexto;
-        public EstudiantesController(
-            ILogger<EstudiantesController> logger, 
+        public EstudianteController(
+            ILogger<EstudianteController> logger,
             AplicacionContexto aplicacionContexto)
-        {   
+        {
             _logger = logger;
             _aplicacionContexto = aplicacionContexto;
         }
         //Create: Crear estudiantes
-        [Route("")]
+        //[Route("")]
         [HttpPost]
         public IActionResult Post(
-            [FromBody] Estudiante estudiante)
+            [FromBody] Estudiantes estudiante)
         {
             _aplicacionContexto.Estudiantes.Add(estudiante);
             _aplicacionContexto.SaveChanges();
             return Ok(estudiante);
         }
         //READ: Obtener lista de estudiantes
-        [Route("")]
+        //[Route("")]
         [HttpGet]
-        public  IEnumerable<Estudiante> Get()
+        public IEnumerable<Estudiantes> Get()
         {
             return _aplicacionContexto.Estudiantes.ToList();
         }
         //Update: Modificar estudiantes
-        [Route("/id")]
+        //[Route("/id")]
         [HttpPut]
-        public IActionResult Put([FromBody] Estudiante estudiante)
+        public IActionResult Put([FromBody] Estudiantes estudiante)
         {
             _aplicacionContexto.Estudiantes.Update(estudiante);
             _aplicacionContexto.SaveChanges();
             return Ok(estudiante);
         }
         //Delete: Eliminar estudiantes
-        [Route("/id")]
+        //[Route("/id")]
         [HttpDelete]
         public IActionResult Delete(int estudiantesID)
         {
             _aplicacionContexto.Estudiantes.Remove(
                 _aplicacionContexto.Estudiantes.ToList()
-                .Where(x=>x.IdEstudiante == estudiantesID)
+                .Where(x => x.idEstudiante == estudiantesID)
                 .FirstOrDefault());
-            _aplicacionContexto.SaveChanges ();
+            _aplicacionContexto.SaveChanges();
 
             return Ok(estudiantesID);
         }

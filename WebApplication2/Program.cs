@@ -1,11 +1,10 @@
-using Microsoft.Extensions.Options;
-using WebApplication2.Context;
+
 using Microsoft.EntityFrameworkCore;
+using WebApplication2.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -14,9 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AplicacionContexto>(options =>
 {
-options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
 
 var app = builder.Build();
 
@@ -28,9 +26,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

@@ -3,14 +3,15 @@ using System.Numerics;
 
 namespace WebApplication2.Models
 {
-    public class Estudiantes
+    public class Docente
     {
         [Key]
-        public int idEstudiante { get; set; }
+        public int idDocente { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public int Edad { get; set; }
-        public bool Sexo { get; set; }
+        public string ubicacion { get; set; }
+        public string Sexo { get; set; }
+        public string CI { get; set; }
         public int idUniversidad { get; set; }
     }
 }

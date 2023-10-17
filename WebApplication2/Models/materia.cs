@@ -1,14 +1,13 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication2.Models
 {
-    public class Estudiante
+    public class Materia
     {
         [Key]
-        public int IdEstudiante { get; set; }
+        public int idMateria { get; set; }
         public string Nombre { get; set; }
-        public int Edad { get; set; }
-        public string ubicacion { get; set; }
-        public string Apellido { get; set; }
+        public int idDocente { get; set; }
+
     }
 }
